@@ -17,24 +17,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OHh-zF-ics">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="105"/>
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="120"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30 NOVEMBER 2026" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aZ9-EK-rKt">
-                                        <rect key="frame" x="107.66666666666669" y="69" width="178" height="21"/>
+                                        <rect key="frame" x="122.66666666666669" y="84" width="178" height="21"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
+                                <viewLayoutGuide key="safeArea" id="BKd-Ok-QDG"/>
                                 <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="aZ9-EK-rKt" secondAttribute="bottom" constant="15" id="NEn-Dr-LFa"/>
-                                    <constraint firstItem="aZ9-EK-rKt" firstAttribute="centerX" secondItem="OHh-zF-ics" secondAttribute="centerX" id="T71-5u-kWz"/>
-                                    <constraint firstAttribute="height" constant="105" id="tc9-Wc-m82"/>
+                                    <constraint firstItem="aZ9-EK-rKt" firstAttribute="centerX" secondItem="BKd-Ok-QDG" secondAttribute="centerX" constant="15" id="T71-5u-kWz"/>
+                                    <constraint firstAttribute="height" constant="120" id="tc9-Wc-m82"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="qwV-ut-bnU">
-                                <rect key="frame" x="0.0" y="118" width="393" height="666"/>
+                                <rect key="frame" x="0.0" y="120" width="393" height="664"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskTableViewCell" rowHeight="142" id="QEr-a8-YRt" customClass="TaskTableViewCell" customModule="ToDoListAppUIKit" customModuleProvider="target">
@@ -126,7 +127,7 @@
                         <constraints>
                             <constraint firstItem="OHh-zF-ics" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Hes-Nw-Dg9"/>
                             <constraint firstItem="OHh-zF-ics" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Liw-5Y-hNe"/>
-                            <constraint firstItem="qwV-ut-bnU" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="U0Q-jA-bMk"/>
+                            <constraint firstItem="qwV-ut-bnU" firstAttribute="top" secondItem="OHh-zF-ics" secondAttribute="bottom" id="U0Q-jA-bMk"/>
                             <constraint firstItem="OHh-zF-ics" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="UbB-JU-C07"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="qwV-ut-bnU" secondAttribute="bottom" id="Vau-En-b3n"/>
                             <constraint firstItem="qwV-ut-bnU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="b97-UE-Lbc"/>

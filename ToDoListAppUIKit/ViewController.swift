@@ -17,12 +17,35 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            tableView.delegate = self
+            tableView.dataSource = self
+            tableView.estimatedRowHeight = 80
+            tableView.rowHeight = UITableView.automaticDimension
+        }
+    }
+    
+    private var addButton:  UIButton = {
+        let button = UIButton()
+        button.backgroundColor = UIColor.link
+        button.tintColor = .white
+        button.setImage(UIImage(systemName: "plus"), for: .normal)
+        return button
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
+        floatingAddButton()
+    }
+    
+    func floatingAddButton() {
+        view.addSubview(addButton)
+        let width: CGFloat = 60
+        let height: CGFloat = 60
+        let xPos  = (view.frame.width / 2) - (width / 2)
+        let yPos = (view.frame.height - height)
+        addButton.frame = CGRect(x: xPos, y: yPos, width: width, height: height)
     }
 
 }
@@ -33,11 +56,11 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TaskTableViewCell.identifier, for: indexPath) as? TaskTableViewCell else {
+            return UITableViewCell()
+        }
+        return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
-    }
     
 }
