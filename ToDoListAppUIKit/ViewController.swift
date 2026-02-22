@@ -8,7 +8,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var titleView: UIView! {
         didSet {
             titleView.clipsToBounds = true
@@ -36,23 +36,25 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        floatingAddButton()
+        view.addSubview(addButton)
     }
     
-    func floatingAddButton() {
-        view.addSubview(addButton)
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let safeAreabutton = view.safeAreaInsets.bottom
         let width: CGFloat = 60
         let height: CGFloat = 60
         let xPos  = (view.frame.width / 2) - (width / 2)
-        let yPos = (view.frame.height - height)
+        let yPos = view.frame.height - height - safeAreabutton
         addButton.frame = CGRect(x: xPos, y: yPos, width: width, height: height)
+        addButton.layer.cornerRadius = width / 2
     }
-
+    
 }
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 10
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
