@@ -31,12 +31,15 @@ class ViewController: UIViewController {
         button.backgroundColor = UIColor.link
         button.tintColor = .white
         button.setImage(UIImage(systemName: "plus"), for: .normal)
+        button.imageView?.layer.transform = CATransform3DMakeScale(1.4, 1.4, 1.4)
         return button
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(addButton)
+        addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
+
     }
     
     override func viewDidLayoutSubviews() {
@@ -48,6 +51,12 @@ class ViewController: UIViewController {
         let yPos = view.frame.height - height - safeAreabutton
         addButton.frame = CGRect(x: xPos, y: yPos, width: width, height: height)
         addButton.layer.cornerRadius = width / 2
+    }
+    
+    
+    @objc func addButtonTapped() {
+        let newTaskViewController = NewTaskViewController()
+        present(newTaskViewController, animated: true)
     }
     
 }
