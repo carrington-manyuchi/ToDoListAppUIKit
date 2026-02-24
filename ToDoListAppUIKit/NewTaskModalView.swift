@@ -10,7 +10,6 @@ import UIKit
 class NewTaskModalView: UIView {
     @IBOutlet var contentView: UIView!
 
-
     @IBOutlet private weak var descriptionTextView: UITextView! {
         didSet {
             descriptionTextView.layer.borderWidth = 0.5
@@ -105,7 +104,6 @@ class NewTaskModalView: UIView {
         }        
         view?.closeView()
     }
-    
 }
 
 extension NewTaskModalView: UITextViewDelegate  {

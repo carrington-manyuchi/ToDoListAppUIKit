@@ -21,7 +21,7 @@ class TaskTableViewCell: UITableViewCell {
             containerView.clipsToBounds = true
         }
     }
-
+    
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var captionLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -38,11 +38,9 @@ class TaskTableViewCell: UITableViewCell {
         super.awakeFromNib()
         
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     func configure(withTask task: TaskModel) {
@@ -52,5 +50,5 @@ class TaskTableViewCell: UITableViewCell {
         dateLabel.text = dateFormatter.string(from: task.createdDate)
         selectionStyle = .none
     }
-
+    
 }

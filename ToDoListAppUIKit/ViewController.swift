@@ -8,7 +8,6 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
     @IBOutlet weak var titleView: UIView! {
         didSet {
             titleView.clipsToBounds = true
@@ -55,7 +54,6 @@ class ViewController: UIViewController {
         tableView.reloadData()
     }
     
-    
     @objc func editTask(_ notification: Notification) {
         guard let userInfo = notification.userInfo,
               let tasktoUpdate = userInfo["updateTask"] as? TaskModel else {
@@ -82,12 +80,10 @@ class ViewController: UIViewController {
         addButton.layer.cornerRadius = width / 2
     }
     
-    
     @objc func addButtonTapped() {
         let newTaskViewController = NewTaskViewController()
         present(newTaskViewController, animated: true)
     }
-    
 }
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
@@ -104,7 +100,6 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         cell.configure(withTask: task)
         return cell
     }
-    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let task = tasks[indexPath.row]

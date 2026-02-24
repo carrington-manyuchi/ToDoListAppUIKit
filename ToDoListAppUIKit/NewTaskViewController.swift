@@ -12,7 +12,6 @@ protocol NewTaskView: AnyObject {
 }
 
 class NewTaskViewController: UIViewController {
-    
     lazy var modalView: NewTaskModalView = {
         let modalWidth = view.frame.width - CGFloat(30)
         let modalHeight: CGFloat = 430
@@ -40,7 +39,6 @@ class NewTaskViewController: UIViewController {
         view.backgroundColor = UIColor.gray.withAlphaComponent(0.9)
         view.addSubview(modalView)
     }
-
 }
 
 //MARK: - Conformance to New Task
