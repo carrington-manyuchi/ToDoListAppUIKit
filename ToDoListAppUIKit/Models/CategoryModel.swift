@@ -9,7 +9,7 @@ import Foundation
 
 
 enum Category: String, CaseIterable {
-    case work
-    case study
-    case exercise
+    case work = "Work"
+    case study = "Study"
+    case exercise = "Exercise"
 }

@@ -8,9 +8,16 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewTaskModalView" customModule="ToDoListAppUIKit" customModuleProvider="target">
+            <connections>
+                <outlet property="categoryPickerView" destination="WKZ-8L-q2Z" id="dMu-g7-Ace"/>
+                <outlet property="contentView" destination="iN0-l3-epB" id="zGL-ul-4Eo"/>
+                <outlet property="descriptionTextView" destination="nJY-rq-gbz" id="BtD-nT-12o"/>
+                <outlet property="submitButton" destination="016-Jd-xJ6" id="bSE-Hx-Zw7"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="NewTaskModalView" customModule="ToDoListAppUIKit" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="610" height="506"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -30,7 +37,7 @@
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" image="xmark" catalog="system"/>
                     <connections>
-                        <action selector="closeButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="WKm-Ih-cNO"/>
+                        <action selector="closeButtonTapped:" destination="-1" eventType="touchUpInside" id="IeT-bp-MWu"/>
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Caption" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lth-WU-p2n">
@@ -72,7 +79,7 @@
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" title="Button"/>
                     <connections>
-                        <action selector="submitButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="2Vv-LY-w4f"/>
+                        <action selector="submitButtonTapped:" destination="-1" eventType="touchUpInside" id="r7S-ja-F3g"/>
                     </connections>
                 </button>
             </subviews>
@@ -99,11 +106,6 @@
                 <constraint firstItem="Oya-mF-dUP" firstAttribute="top" secondItem="nJY-rq-gbz" secondAttribute="bottom" constant="15" id="zAa-Lr-5oi"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <connections>
-                <outlet property="categoryPickerView" destination="WKZ-8L-q2Z" id="swk-rl-1Fh"/>
-                <outlet property="descriptionTextView" destination="nJY-rq-gbz" id="OLf-Q4-bn4"/>
-                <outlet property="submitButton" destination="016-Jd-xJ6" id="aXG-8C-ghC"/>
-            </connections>
             <point key="canvasLocation" x="235" y="-48"/>
         </view>
     </objects>

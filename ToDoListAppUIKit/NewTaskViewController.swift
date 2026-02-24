@@ -7,10 +7,18 @@
 
 import UIKit
 
+protocol NewTaskView: AnyObject {
+    func closeView()
+}
+
 class NewTaskViewController: UIViewController {
     
     lazy var modalView: NewTaskModalView = {
-        let modalView = UINib(nibName: "NewTaskModalView", bundle: nil).instantiate(withOwner: nil).first as! NewTaskModalView
+        let modalWidth = view.frame.width - CGFloat(30)
+        let modalHeight: CGFloat = 430
+        let frame = CGRect(x: 15, y: view.center.y - (modalHeight/2), width: modalWidth, height: modalHeight)
+        let modalView = NewTaskModalView(frame: frame)
+        modalView.view = self
         return modalView
     }()
     
@@ -28,10 +36,13 @@ class NewTaskViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.gray.withAlphaComponent(0.9)
         view.addSubview(modalView)
-        let modalWidth = view.frame.width - CGFloat(30)
-        let modalHeight: CGFloat = 430
-        modalView.frame = CGRect(x: 15, y: view.center.y - (modalHeight/2), width: modalWidth, height: modalHeight)
     }
 
+}
 
+//MARK: - Conformance to New Task
+extension NewTaskViewController:  NewTaskView  {
+    func closeView() {
+        dismiss(animated: true)
+    }
 }

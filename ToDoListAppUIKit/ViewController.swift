@@ -35,11 +35,22 @@ class ViewController: UIViewController {
         return button
     }()
     
+    var tasks: [TaskModel] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(addButton)
         addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
-
+        NotificationCenter.default.addObserver(self, selector: #selector(createTask(_:)), name: NSNotification.Name("com.fullstacktuts.createTask"), object: nil)
+    }
+    
+    @objc func createTask(_ notification: Notification) {
+        guard let userInfo = notification.userInfo,
+              let task = userInfo["newTask"] as? TaskModel else {
+            return
+        }
+        tasks.append(task)
+        tableView.reloadData()
     }
     
     override func viewDidLayoutSubviews() {
@@ -63,13 +74,16 @@ class ViewController: UIViewController {
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return tasks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let task = tasks[indexPath.row]
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TaskTableViewCell.identifier, for: indexPath) as? TaskTableViewCell else {
             return UITableViewCell()
         }
+        
+        cell.configure(withTask: task)
         return cell
     }
     

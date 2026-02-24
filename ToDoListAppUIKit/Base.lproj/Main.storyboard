@@ -115,8 +115,12 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="captionLabel" destination="Z56-R6-txy" id="XBQ-DH-opM"/>
                                             <outlet property="categoryContainerView" destination="bED-ji-tfa" id="19K-zL-gMN"/>
+                                            <outlet property="categoryLabel" destination="TEz-Ci-9v7" id="ZLT-B4-cDP"/>
                                             <outlet property="containerView" destination="7fT-cM-7tD" id="ihL-6f-ofG"/>
+                                            <outlet property="dateLabel" destination="P5b-e7-JJo" id="fTI-Ed-efb"/>
+                                            <outlet property="isCompleteImageView" destination="MDT-9r-Kjg" id="6cY-cm-giy"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

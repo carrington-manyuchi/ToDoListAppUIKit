@@ -8,6 +8,8 @@
 import UIKit
 
 class NewTaskModalView: UIView {
+    @IBOutlet var contentView: UIView!
+
 
     @IBOutlet private weak var descriptionTextView: UITextView! {
         didSet {
@@ -33,16 +35,55 @@ class NewTaskModalView: UIView {
         }
     }
     
+    var view: NewTaskView?
+    
+    var caption: String {
+        get { return descriptionTextView.text }
+        set { descriptionTextView.text = newValue }
+    }
+
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        initSubviews()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        initSubviews()
+    }
+    
+    func initSubviews() {
+        let nib = UINib(nibName: "NewTaskModalView", bundle: nil)
+        nib.instantiate(withOwner: self)
+        contentView.frame = bounds
+        categoryPickerView.selectRow(1, inComponent: 0, animated: false)
+        contentView.layer.cornerRadius = 5
+        addSubview(contentView)
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        categoryPickerView.selectRow(1, inComponent: 0, animated: false)
-        layer.cornerRadius = 5
+        
     }
     
     @IBAction func closeButtonTapped(_ sender: UIButton) {
+        view?.closeView()
     }
 
     @IBAction func submitButtonTapped(_ sender: UIButton) {
+        
+        guard let caption = descriptionTextView.text,
+        caption.count >= 4 else {
+                return
+            }
+        
+        let selectedRow = categoryPickerView.selectedRow(inComponent: 0)
+        let category = Category.allCases[selectedRow]
+        let task = TaskModel(category: category, caption: caption, createdDate: Date(), isComplete: false)
+        let userInfo: [String: TaskModel] = ["newTask" : task]
+        NotificationCenter.default.post(name: NSNotification.Name("com.fullstacktuts.createTask"), object: nil, userInfo: userInfo)
+        view?.closeView()
     }
     
 }
@@ -72,11 +113,6 @@ extension NewTaskModalView: UIPickerViewDataSource, UIPickerViewDelegate {
         return Category.allCases.count
     }
     
-    
-//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-//        return Category.allCases[row].rawValue
-//    }
-//    
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         var pickerLabel: UILabel? = view as? UILabel
         if pickerLabel == nil {

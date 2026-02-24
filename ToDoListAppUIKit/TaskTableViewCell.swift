@@ -22,6 +22,18 @@ class TaskTableViewCell: UITableViewCell {
         }
     }
 
+    @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var captionLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var isCompleteImageView: UIImageView!
+    
+    
+    private var dateFormatter: DateFormatter {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        return dateFormatter
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -31,6 +43,13 @@ class TaskTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func configure(withTask task: TaskModel) {
+        categoryLabel.text = task.category.rawValue
+        captionLabel.text = task.caption
+        isCompleteImageView.image = task.isComplete ? UIImage(systemName: "checkmark.circle") : UIImage(systemName: "circle")
+        dateLabel.text = dateFormatter.string(from: task.createdDate)
     }
 
 }
