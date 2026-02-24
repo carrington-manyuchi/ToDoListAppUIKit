@@ -41,6 +41,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         view.addSubview(addButton)
         addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
+        tableView.separatorStyle = .none
         NotificationCenter.default.addObserver(self, selector: #selector(createTask(_:)), name: NSNotification.Name("com.fullstacktuts.createTask"), object: nil)
     }
     
@@ -87,5 +88,11 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let task = tasks[indexPath.row]
+        let newTaskViewController = NewTaskViewController(task: task)
+        present(newTaskViewController, animated: true)
+    }
     
 }

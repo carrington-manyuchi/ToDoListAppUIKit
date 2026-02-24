@@ -17,15 +17,18 @@ class NewTaskViewController: UIViewController {
         let modalWidth = view.frame.width - CGFloat(30)
         let modalHeight: CGFloat = 430
         let frame = CGRect(x: 15, y: view.center.y - (modalHeight/2), width: modalWidth, height: modalHeight)
-        let modalView = NewTaskModalView(frame: frame)
+        let modalView = NewTaskModalView(frame: frame, task: task)
         modalView.view = self
         return modalView
     }()
     
-    init() {
+    var task: TaskModel?
+    
+    init(task: TaskModel? = nil) {
         super.init(nibName: nil, bundle: nil)
         modalTransitionStyle = .crossDissolve
         modalPresentationStyle = .fullScreen
+        self.task = task
     }
     
     required init?(coder: NSCoder) {

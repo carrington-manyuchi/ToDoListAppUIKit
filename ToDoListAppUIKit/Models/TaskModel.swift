@@ -8,6 +8,7 @@
 import Foundation
 
 struct TaskModel {
+    let id: String
     let category: Category
     let caption: String
     let createdDate: Date

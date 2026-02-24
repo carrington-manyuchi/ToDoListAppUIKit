@@ -50,6 +50,7 @@ class TaskTableViewCell: UITableViewCell {
         captionLabel.text = task.caption
         isCompleteImageView.image = task.isComplete ? UIImage(systemName: "checkmark.circle") : UIImage(systemName: "circle")
         dateLabel.text = dateFormatter.string(from: task.createdDate)
+        selectionStyle = .none
     }
 
 }

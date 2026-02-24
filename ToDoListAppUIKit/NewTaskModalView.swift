@@ -16,8 +16,6 @@ class NewTaskModalView: UIView {
             descriptionTextView.layer.borderWidth = 0.5
             descriptionTextView.layer.borderColor = UIColor.lightGray.cgColor
             descriptionTextView.layer.cornerRadius = 8
-            descriptionTextView.text = "Add caption..."
-            descriptionTextView.textColor = .lightGray
             descriptionTextView.delegate = self
         }
     }
@@ -35,16 +33,17 @@ class NewTaskModalView: UIView {
         }
     }
     
-    var view: NewTaskView?
+    weak var view: NewTaskView?
+    private var task: TaskModel?
     
     var caption: String {
         get { return descriptionTextView.text }
         set { descriptionTextView.text = newValue }
     }
-
     
-    override init(frame: CGRect) {
+    init(frame: CGRect, task: TaskModel?) {
         super.init(frame: frame)
+        self.task = task
         initSubviews()
     }
     
@@ -57,9 +56,20 @@ class NewTaskModalView: UIView {
         let nib = UINib(nibName: "NewTaskModalView", bundle: nil)
         nib.instantiate(withOwner: self)
         contentView.frame = bounds
-        categoryPickerView.selectRow(1, inComponent: 0, animated: false)
         contentView.layer.cornerRadius = 5
         addSubview(contentView)
+        
+        if let task = task {
+            descriptionTextView.text = task.caption
+            descriptionTextView.textColor = .black
+            if let rowIndex = Category.allCases.firstIndex(of: task.category) {
+                categoryPickerView.selectRow(rowIndex, inComponent: 0, animated: false)
+            }
+        } else {
+            descriptionTextView.text = "Add caption..."
+            descriptionTextView.textColor = .lightGray
+            categoryPickerView.selectRow(1, inComponent: 0, animated: false)
+        }
     }
     
     override func awakeFromNib() {
@@ -80,9 +90,19 @@ class NewTaskModalView: UIView {
         
         let selectedRow = categoryPickerView.selectedRow(inComponent: 0)
         let category = Category.allCases[selectedRow]
-        let task = TaskModel(category: category, caption: caption, createdDate: Date(), isComplete: false)
-        let userInfo: [String: TaskModel] = ["newTask" : task]
-        NotificationCenter.default.post(name: NSNotification.Name("com.fullstacktuts.createTask"), object: nil, userInfo: userInfo)
+        
+        if let task = task {
+            let task = TaskModel(id: task.id, category: category, caption: caption, createdDate: task.createdDate, isComplete: task.isComplete)
+            let userInfo: [String: TaskModel] = ["updateTask" : task]
+
+            NotificationCenter.default.post(name: NSNotification.Name("com.fullstacktuts.editTask"), object: nil, userInfo: userInfo)
+
+        } else {
+            let taskId = UUID().uuidString
+            let task = TaskModel(id: taskId, category: category, caption: caption, createdDate: Date(), isComplete: false)
+            let userInfo: [String: TaskModel] = ["newTask" : task]
+            NotificationCenter.default.post(name: NSNotification.Name("com.fullstacktuts.createTask"), object: nil, userInfo: userInfo)
+        }        
         view?.closeView()
     }
     
