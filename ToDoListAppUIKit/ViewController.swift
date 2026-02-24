@@ -43,6 +43,7 @@ class ViewController: UIViewController {
         addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         tableView.separatorStyle = .none
         NotificationCenter.default.addObserver(self, selector: #selector(createTask(_:)), name: NSNotification.Name("com.fullstacktuts.createTask"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(editTask(_:)), name: NSNotification.Name("com.fullstacktuts.editTask"), object: nil)
     }
     
     @objc func createTask(_ notification: Notification) {
@@ -51,6 +52,22 @@ class ViewController: UIViewController {
             return
         }
         tasks.append(task)
+        tableView.reloadData()
+    }
+    
+    
+    @objc func editTask(_ notification: Notification) {
+        guard let userInfo = notification.userInfo,
+              let tasktoUpdate = userInfo["updateTask"] as? TaskModel else {
+            return
+        }
+        
+        let taskIndex = tasks.firstIndex { $0.id == tasktoUpdate.id }
+        guard let taskIndex = taskIndex else {
+            return
+        }
+        
+        tasks[taskIndex] = tasktoUpdate
         tableView.reloadData()
     }
     
