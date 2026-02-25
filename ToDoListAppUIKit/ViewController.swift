@@ -97,14 +97,40 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             return UITableViewCell()
         }
         
-        cell.configure(withTask: task)
+        cell.configure(withTask: task, taskTableViewCellView: self)
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let task = tasks[indexPath.row]
-        let newTaskViewController = NewTaskViewController(task: task)
-        present(newTaskViewController, animated: true)
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            tasks.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
     }
+}
+
+
+extension ViewController: TaskTableViewCellView {
+    func editTask(id: String) {
+        let taskIndex = tasks.firstIndex { $0.id == id }
+        guard let taskIndex = taskIndex else {
+            return
+        }
+        let newTaskViewController = NewTaskViewController(task: tasks[taskIndex])
+        present(newTaskViewController, animated: true)
+        tableView.reloadData()
+    }
+    
+    func markTask(id: String, complete: Bool) {
+        let taskIndex = tasks.firstIndex { $0.id == id }
+        
+        guard let taskIndex = taskIndex else {
+            return
+        }
+        
+        tasks[taskIndex].isComplete = complete
+        tableView.reloadData()
+    }
+    
     
 }

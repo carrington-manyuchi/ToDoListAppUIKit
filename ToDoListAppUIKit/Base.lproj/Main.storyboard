@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -74,7 +75,7 @@
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z56-R6-txy">
-                                                            <rect key="frame" x="20" y="47" width="298.33333333333331" height="18"/>
+                                                            <rect key="frame" x="20" y="47" width="292.33333333333331" height="18"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -85,12 +86,24 @@
                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="MDT-9r-Kjg">
-                                                            <rect key="frame" x="323.33333333333331" y="46.666666666666664" width="19.666666666666686" height="18.999999999999993"/>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MDT-9r-Kjg">
+                                                            <rect key="frame" x="317.33333333333331" y="43.333333333333329" width="25.666666666666686" height="25.666666666666671"/>
+                                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <imageReference key="image" image="circle" catalog="system" symbolScale="large"/>
                                                         </imageView>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CUw-Qy-aWZ">
+                                                            <rect key="frame" x="324" y="15" width="19" height="22"/>
+                                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                            <state key="normal" image="ellipsis" catalog="system"/>
+                                                            <connections>
+                                                                <action selector="editTaskButtonTapped:" destination="QEr-a8-YRt" eventType="touchUpInside" id="lSE-2k-f3W"/>
+                                                            </connections>
+                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
+                                                        <constraint firstItem="CUw-Qy-aWZ" firstAttribute="centerY" secondItem="TEz-Ci-9v7" secondAttribute="centerY" id="8Q7-1Z-2jf"/>
                                                         <constraint firstItem="fb0-Rb-TE4" firstAttribute="top" secondItem="7fT-cM-7tD" secondAttribute="top" id="Au4-Gn-JIq"/>
                                                         <constraint firstItem="Z56-R6-txy" firstAttribute="leading" secondItem="fb0-Rb-TE4" secondAttribute="trailing" constant="15" id="BjO-U4-vsk"/>
                                                         <constraint firstItem="MDT-9r-Kjg" firstAttribute="leading" secondItem="Z56-R6-txy" secondAttribute="trailing" constant="5" id="HY1-uG-sOr"/>
@@ -101,6 +114,7 @@
                                                         <constraint firstAttribute="bottom" secondItem="fb0-Rb-TE4" secondAttribute="bottom" id="ce1-zs-rjo"/>
                                                         <constraint firstItem="bED-ji-tfa" firstAttribute="leading" secondItem="fb0-Rb-TE4" secondAttribute="trailing" constant="15" id="d3C-ch-J6u"/>
                                                         <constraint firstItem="fb0-Rb-TE4" firstAttribute="leading" secondItem="7fT-cM-7tD" secondAttribute="leading" id="jgZ-RM-Yjv"/>
+                                                        <constraint firstAttribute="trailing" secondItem="CUw-Qy-aWZ" secondAttribute="trailing" constant="10" id="jyu-6k-aP6"/>
                                                         <constraint firstItem="bED-ji-tfa" firstAttribute="top" secondItem="7fT-cM-7tD" secondAttribute="top" constant="15" id="p6w-9m-b45"/>
                                                         <constraint firstItem="MDT-9r-Kjg" firstAttribute="centerY" secondItem="Z56-R6-txy" secondAttribute="centerY" id="wyU-EI-vEg"/>
                                                         <constraint firstItem="Z56-R6-txy" firstAttribute="top" secondItem="bED-ji-tfa" secondAttribute="bottom" constant="10" id="z6k-SG-2gt"/>
@@ -150,6 +164,7 @@
     </scenes>
     <resources>
         <image name="circle" catalog="system" width="128" height="123"/>
+        <image name="ellipsis" catalog="system" width="128" height="37"/>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

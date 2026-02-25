@@ -12,5 +12,5 @@ struct TaskModel {
     let category: Category
     let caption: String
     let createdDate: Date
-    let isComplete: Bool
+    var isComplete: Bool
 }
